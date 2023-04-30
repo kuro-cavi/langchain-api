@@ -8,7 +8,7 @@ from typing import List
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains.question_answering import load_qa_chain
 from langchain.document_loaders import UnstructuredURLLoader
-from langchain.output_parsers import StructuredOutputParser, ResponseSchema, CommaSeparatedListOutputParser
+from langchain.output_parsers import CommaSeparatedListOutputParser
 from langchain.prompts import PromptTemplate
 from langchain.llms import OpenAI
 
@@ -23,7 +23,7 @@ class UrlRequest(BaseModel):
     urls: List[str]
 
 
-class Request(BaseModel):
+class FormatRequest(BaseModel):
     message: str
 
 
@@ -55,7 +55,7 @@ def url(request: UrlRequest):
 
 
 @app.post("/format")
-def format(request: Request):
+def format(request: FormatRequest):
     """
     Template Format
     ----------
